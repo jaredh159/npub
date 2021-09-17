@@ -1,0 +1,30 @@
+{
+  "name": "@jaredh/npub",
+  "version": "1.0.0-beta.1",
+  "description": "a tool for publishing to npm",
+  "bin": {
+    "npub": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "true",
+    "lint": "fldev lint",
+    "lint:fix": "fldev lint:fix",
+    "ts:check": "fldev ts:check",
+    "format": "fldev format",
+    "format:check": "fldev format --check",
+    "compile": "fldev ts:compile",
+    "prepublishOnly": "npm run compile",
+    "npub:precheck": "npm run lint && npm run ts:check && npm run format"
+  },
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@friends-library/dev": "^4.4.1",
+    "@types/semver": "^7.3.8"
+  },
+  "dependencies": {
+    "semver": "^7.3.5",
+    "x-chalk": "^1.0.1",
+    "x-exec": "^1.2.0"
+  }
+}

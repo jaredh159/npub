@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "noImplicitOverride": true,
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "lib": ["ES2020"],
+    "module": "CommonJS",
+    "target": "ES2020"
+  }
+}
