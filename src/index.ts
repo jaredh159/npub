@@ -53,9 +53,10 @@ async function main(): Promise<void> {
 
   if (doCi) {
     log(
-      c`{magenta •} running {green npub:precheck} npm script {gray --no-check to disable}`,
+      c`{magenta •} running {green npub:precheck} npm script {gray --no-check to disable}\n`,
     );
-    exec.exit(`npm run npub:precheck`);
+    exec.out(`npm run npub:precheck`);
+    log(``);
   }
 
   log(c`{magenta •} setting new version {green ${nextVersion}} in package.json`);
