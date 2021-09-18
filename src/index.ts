@@ -43,7 +43,7 @@ async function main(): Promise<void> {
 
   const doGitOps = !argv.includes(`--no-git`);
   const delay = !argv.includes(`--no-delay`);
-  const doCi = !argv.includes(`--no-ci`);
+  const doCi = !argv.includes(`--no-check`);
 
   log(c`\nAbout to publish {yellow ${nextVersion}} with tag {magenta @${tag}}`);
   doGitOps && gray(`git add/commit/tag operations will be made (--no-git to disable)`);
