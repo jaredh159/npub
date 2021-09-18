@@ -20,8 +20,9 @@ async function main(): Promise<void> {
   }
 
   let nextVersion = ``;
+  const [name, version] = getPkgInfo();
   if (isReleaseType(input)) {
-    nextVersion = semver.inc(getCurrentVersion(), input) ?? `<error>`;
+    nextVersion = semver.inc(version, input) ?? `<error>`;
   } else {
     nextVersion = input;
   }
@@ -45,7 +46,9 @@ async function main(): Promise<void> {
   const delay = !argv.includes(`--no-delay`);
   const doCi = !argv.includes(`--no-check`);
 
-  log(c`\nAbout to publish {yellow ${nextVersion}} with tag {magenta @${tag}}`);
+  log(
+    c`\nAbout to publish {cyan ${name}} -> {yellow ${nextVersion}} with tag {magenta @${tag}}`,
+  );
   doGitOps && gray(`git add/commit/tag operations will be made (--no-git to disable)`);
   delay && gray(`You have 5 seconds to abort with <Ctrl-C> (--no-delay to disable)...\n`);
   delay && (await new Promise((res) => setTimeout(res, 5000)));
@@ -89,11 +92,11 @@ async function main(): Promise<void> {
 
 main();
 
-function getCurrentVersion(): string {
+function getPkgInfo(): [name: string, version: string] {
   const pkgPath = path.join(process.cwd(), `package.json`);
   const contents = fs.readFileSync(pkgPath, `utf-8`);
   const pkg = JSON.parse(contents);
-  return pkg.version;
+  return [pkg.name, pkg.version];
 }
 
 function isReleaseType(string: string): string is ReleaseType {
