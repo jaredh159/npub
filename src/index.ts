@@ -37,9 +37,14 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  let tag: `latest` | `next` = `latest`;
+  let tag = `latest`;
   if (nextVersion.match(/(alpha|beta|rc)/)) {
     tag = `next`;
+  }
+  for (let i = 0; i < argv.length; i++) {
+    if ([`-t`, `--tag`].includes(argv[i] ?? ``) && typeof argv[i + 1] === `string`) {
+      tag = argv[i + 1] ?? `error`;
+    }
   }
 
   const doGitOps = !argv.includes(`--no-git`);
