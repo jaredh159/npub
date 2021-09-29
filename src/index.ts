@@ -63,7 +63,10 @@ async function main(): Promise<void> {
     log(
       c`{magenta •} running {green npub:precheck} npm script {gray --no-check to disable}\n`,
     );
-    exec.out(`npm run npub:precheck`);
+    if (!exec.out(`npm run npub:precheck`)) {
+      red(`npub:precheck script failed`);
+      process.exit(1);
+    }
     log(``);
   }
 
