@@ -1,6 +1,6 @@
 {
   "name": "@jaredh159/npub",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0",
   "description": "a tool for publishing to npm",
   "bin": {
     "npub": "./dist/index.js"
