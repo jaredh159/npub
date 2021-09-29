@@ -11,10 +11,10 @@
     "lint:fix": "fldev lint:fix",
     "ts:check": "fldev ts:check",
     "format": "fldev format",
-    "format:check": "fldev format --check",
+    "format:check": "fldev format -- --check",
     "compile": "fldev ts:compile",
     "prepublishOnly": "npm run compile",
-    "npub:precheck": "npm run lint && npm run ts:check && npm run format"
+    "npub:precheck": "fldev ci"
   },
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",

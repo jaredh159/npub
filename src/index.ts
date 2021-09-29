@@ -7,6 +7,12 @@ import exec from 'x-exec';
 
 async function main(): Promise<void> {
   const argv = process.argv.slice(2);
+
+  if (argv.length === 1 && argv[0] === `--version`) {
+    log(c`npub version: {green ${getNpubVersion()}}`);
+    process.exit(0);
+  }
+
   const input = argv.shift();
   if (!input) {
     red(`ERROR: Missing input string`);
@@ -110,4 +116,11 @@ function getPkgInfo(): [name: string, version: string] {
 function isReleaseType(string: string): string is ReleaseType {
   const releaseTypes: ReleaseType[] = [`patch`, `minor`, `major`, `prerelease`];
   return releaseTypes.includes(string as ReleaseType);
+}
+
+function getNpubVersion(): string {
+  const pkgPath = path.join(__dirname, `..`, `package.json`);
+  const contents = fs.readFileSync(pkgPath, `utf-8`);
+  const pkg = JSON.parse(contents);
+  return pkg.version;
 }
